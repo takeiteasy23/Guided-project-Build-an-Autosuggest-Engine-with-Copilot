@@ -9,7 +9,7 @@ string[] words = {
         "the", "their", "they", "there", "towards"};
 
 Trie dictionary = InitializeTrie(words);
-SearchWord();
+// SearchWord();
 // PrefixAutocomplete();
 // DeleteWord();
 // GetSpellingSuggestions();
@@ -71,14 +71,14 @@ void DeleteWord()
         {
             break;
         }
-        /*
+        
         if (input != null && dictionary.Search(input))
         {
             dictionary.Delete(input);
             Console.WriteLine($"Deleted \"{input}\" from dictionary\n");
             PrintTrie(dictionary);
         }
-        */
+        
         else
         {
             Console.WriteLine($"Did not find \"{input}\" in dictionary");
@@ -203,9 +203,18 @@ void PrintTrie(Trie trie)
 {
     Console.WriteLine("The dictionary contains the following words:");
     List<string> words = trie.GetAllWords();
+    int count = 0;
     foreach (string word in words)
     {
-        Console.Write($"{word}, ");
+        Console.Write($"{word.PadRight(20)}");
+        count++;
+        if (count % 5 == 0)
+        {
+            Console.WriteLine();
+        }
     }
-    Console.WriteLine();
+    if (count % 5 != 0)
+    {
+        Console.WriteLine();
+    }
 }
